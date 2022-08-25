@@ -1,4 +1,5 @@
-# CSE5544
+# 
+Data-Visualization-project
 
 How to run the program
 1. Execute the command :  
