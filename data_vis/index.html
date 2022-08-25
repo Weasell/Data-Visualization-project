@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!-- Load d3.js -->
+	<script src="https://d3js.org/d3.v4.js"></script>
+	<script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+	<script src="https://d3js.org/d3-geo-projection.v2.min.js"></script>
+
+	<meta charset="utf-8">
+	<!-- <script src="https://d3js.org/d3.v4.min.js"></script> -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.9.0/feather.min.js"></script>
+	<script type="text/javascript" src="scatter_plot.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../style.css" >
+
+	<!-- Create an element where the map will take place -->
+	<title>CSE 5544 Final Project</title>
+	<link rel="stylesheet" href="../style.css">
+	<style>
+		body {
+			font-family: sans-serif;
+			font-size: .875rem;
+		}
+
+		table {
+			text-align: center;
+		}
+
+		.tooltip-donut {
+			position: absolute;
+			text-align: center;
+			padding: .2rem;
+			background: #343a40;
+			color: #FFFFFF;
+			border: 1px solid #313639;
+			border-radius: 8px;
+			pointer-events: none;
+			font-size: 1.0rem;
+		}
+
+		input[type="range"] {
+			width: 400px;
+		}
+
+		#sliderContainer {
+			/* background-color: lightblue; */
+			/* border-style: groove; */
+			margin-bottom: 20px;
+			padding-bottom: 10px;
+			padding-right: 20px;
+			padding-left: 20px;
+			/* border-radius: 1em; */
+		}
+
+		#map_svg {
+			background-color: #E0E0E0;
+		}
+
+		#map_title {
+			padding-top: 10px;
+			padding-bottom: 10px;
+		}
+		.radio_area {
+			background-color: lightgrey;
+			padding-top: 6px;
+			padding-right: 10px;
+			padding-left: 10px;
+			border-radius: .2em;
+		}
+	</style>
+</head>
+<body>
+	<nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+		<a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3" href="../data_vis/">CSE 5544 Final Project</a>
+	</nav>
+
+	<div class="container-fluid">
+		<div class="row">
+			<nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+            <div class="sidebar-sticky pt-3">
+              <ul class="nav flex-column">
+                <li class="nav-item">
+                  <a class="nav-link" href="../overview">
+                    <span data-feather="book-open"></span>
+                    Overview
+                  </a>
+                </li>                 
+                <li class="nav-item">
+                  <a class="nav-link" href="../rowData">
+                      <span data-feather="file-text"></span>
+                      Row Data
+                  </a>
+                </li>                    
+                <li class="nav-item">
+                  <a class="nav-link" href="../data_vis">
+                      <span data-feather="map"></span>
+                      Data Visualization
+                  </a>
+                </li>   
+              </ul>
+            </div>
+          </nav>
+			<div class="col-md-9 ml-sm-auto col-lg-10 px-md-4"style = "margin-left:10px;">
+				<div class="justify-content-between pt-3 pb-2 mb-3 border-bottom">
+					<div class="container-fluid">
+						<div class="row">
+							<div class="col-md-12">
+								<div class="row justify-content-center">
+									<h6 id="map_title">Distribution of OECD and Non-OECD countries</h6>
+								</div>
+								<div class="row justify-content-center" style="margin-bottom: 10px ;">
+									<div class="col-2">
+										<div class="row justify-content-center">
+											<text id="btn_yes" style=" border-radius: 5px; padding:5px; background-color: rgba(0,0,256,1); color: white">OECD</text>
+										</div>
+									</div>
+									<div class="col-2">
+										<div class="row justify-content-center">
+											<text id="btn_no" style="border-radius: 5px; padding:5px; background-color: #69b3a2;; color: white">Non-OECD</texts>
+										</div>
+									</div>
+								</div>
+								
+								<div class="row justify-content-center">
+                                    <svg id="map_svg" width="450" height="330"></svg>
+								</div>
+							</div>
+							<!-- US State Map End -->
+							<div id="state-table" class="col-md-5">
+								<div id="table_svg"></div> <!-- Useless thing-->
+							</div>
+						</div>
+						<br>
+						<div class="row justify-content-center">
+							<div class="row">
+								<div class="col-md-5">
+									<div class="row justify-content-center" >
+										<h6>Top 10 countries with highest emission</h6>
+										<div id = "svg2"></div>
+									</div>
+								</div>
+								<div class="col-md-5">
+									<div class="row justify-content-center">
+										<h6 style="margin-left: 15px;">Proportion of total emission</h6>
+										<h6 style="margin-left: 15px;"> between OECD and Non-OECD</h6>
+										<div id="svg3"></div>
+										<div id="sliderContainer">
+											<div id="range">1990</div>
+											<input id="timeslide" type="range" min="0" max="29" value="0" step="1" /><br>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<br>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+    <script type="text/javascript" src="worldmap.js"></script>
+	<script type="text/javascript" src="barchart.js"></script>
+	<script type="text/javascript" src="piechart.js"></script>
+
+    <!-- <script src="worldmap.js?newversion"></script> -->
+    <!-- <script src="barchart.js?newversion"></script> -->
+    <!-- <script src="piechart.js?newversion"></script> -->
+</body>
+
+</html>
+
