@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="https://d3js.org/d3.v4.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.9.0/feather.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../style.css" >
+  <script>
+    $(function() { feather.replace(); });
+  </script>
+  <style>
+    .circle {
+      width: 64px;
+      height: 64px;
+    }
+  </style>  
+  <title>CSE 5544 Final Project</title>
+   
+</head>
+<body>
+    <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+        <a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3" href="../overview">CSE 5544 Final Project</a>
+      </nav>
+      
+      <div class="container-fluid">
+        <div class="row">
+          <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+            <div class="sidebar-sticky pt-3">
+              <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a class="nav-link active" href="../overview">
+                      <span data-feather="book-open"></span>
+                      Overview
+                    </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../rowData">
+                      <span data-feather="file-text"></span>
+                      Row Data
+                  </a>
+                </li>                    
+                <li class="nav-item">
+                  <a class="nav-link" href="../data_vis">
+                      <span data-feather="map"></span>
+                      Data Visualization
+                  </a>
+                </li>                              
+              </ul>
+            </div>
+          </nav>
+      
+          <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+            <div class="justify-content-between pt-3 pb-2 mb-3">
+                <div class="jumbotron jumbotron-fluid">
+                    <div class="container">
+                    <h1 class="display-4">Emission of Countries</h1>
+                    <p class="lead">The goal of the project is to visualize the difference between non-OECD and OECD economies. We are going to show the geographic
+                      location of non-OECD and OECD economies that is helping us to know if they locate in specific area or not. In addition, we choose bar chart and 
+                      pei chart to visualize the data that makes reader know if non-OECE economies take big part of climate change or not.
+                    </p>
+                    </div>
+                </div>
+
+                <div class="justify-content-between pt-3 pb-2 mb-3">
+                    <ul class="list-unstyled">
+                      <li class="media">
+                        <img src="../images/yen.jpg" class="circle mr-3">
+                        <div class="media-body">
+                          <h5 class="mt-0 mb-1">Yun-Chen Yen (yen.156)</h5>
+                          CSE Graduate Student
+                        </div>
+                      </li>
+                      <li class="media my-4">
+                        <img src="../images/yu.jpeg" class="circle mr-3">
+                        <div class="media-body">
+                          <h5 class="mt-0 mb-1"> Wei-Chieh Yu (yu.3057)</h5>
+                          CSE Graduate Student
+                        </div>
+                      </li>
+                    </ul>
+                </div>                
+
+              </div>
+          </main>
+  
+        </div>
+      </div>
+</body>
+</html>
