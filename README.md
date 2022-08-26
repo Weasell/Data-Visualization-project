@@ -1,5 +1,5 @@
 # 
-Data-Visualization-project
+Greenhouse Gasses Visualization
 
 How to run the program
 1. Execute the command :  
